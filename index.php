@@ -14,12 +14,17 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
 </head>
 <body>
     <?php
-    
-      $result = mysqli_query($link, "SELECT * FROM testie") or die(mysqli_error($link ));
-      $result_2 = mysqli_fetch_assoc($result);
-      var_dump($result_2);
-      mysqli_query($link, "INSERT INTO testie SET names='Vycheslavy', age='28' salary='50000' ");
-    
+    $sql = "CREATE DATABASE testbase_2";
+    if(mysqli_connect_error($link)){
+      die( "Faiild connect to Database " . mysqli_connect_error());
+    }
+
+    if(mysqli_query($link,$sql)){
+      echo "Database created succesfully";
+    }else{
+     echo "Error" . mysqli_error($link);
+    }
+    mysqli_close($link);
     ?>
 </body>
 </html>
