@@ -13,18 +13,34 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     <title>Document</title>
 </head>
 <body>
+    <form method='post'>
+    <input type="submit" name='button'>
+    </form>
     <?php
-    $sql = "CREATE DATABASE testbase_2";
-    if(mysqli_connect_error($link)){
-      die( "Faiild connect to Database " . mysqli_connect_error());
-    }
+    //PROCEDURE DATABASE;
 
-    if(mysqli_query($link,$sql)){
-      echo "Database created succesfully";
-    }else{
-     echo "Error" . mysqli_error($link);
+    // $sql = "CREATE DATABASE testbase_2";
+    // if(mysqli_connect_error($link)){
+    //   die( "Faiild connect to Database " . mysqli_connect_error());
+    // }
+
+    // if(mysqli_query($link,$sql)){
+    //   echo "Database created succesfully";
+    // }else{
+    //  echo "Error" . mysqli_error($link);
+    // }
+    // mysqli_close($link);
+    
+    //PDO DATABASE;
+ 
+
+
+    // INSERT FOR DATABASE FROM test 
+    $button = $_POST['button'];
+    if(isset($button) == 1){
+    $query = "INSERT INTO testie SET names='Flower', age='300', salary='5000'";
+    $result = mysqli_query($link,$query);
     }
-    mysqli_close($link);
     ?>
 </body>
 </html>
