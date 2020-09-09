@@ -15,6 +15,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
 <body>
     <form method='post'>
     <input type="submit" name='button'>
+    <input type="submit" name='button2'>
     </form>
     <?php
     //PROCEDURE DATABASE;
@@ -37,9 +38,18 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
 
     // INSERT FOR DATABASE FROM test 
     $button = $_POST['button'];
+    $button2 = $_POST['button2'];
+    mysqli_query($link, "SET NAMES'utf8'");
     if(isset($button) == 1){
-    $query = "INSERT INTO testie SET names='Flower', age='300', salary='5000'";
-    $result = mysqli_query($link,$query);
+    $query = "INSERT INTO testie SET names='Руссич', age='300', salary='5000'";
+    mysqli_query($link,$query);
+    }
+
+    if(isset($button2) == 1){
+        $query = "SELECT * FROM testie WHERE names='руссич'";
+       $result = mysqli_query($link, $query);
+       for($data = []; $row = mysqli_fetch_assoc($result); $data = $row);
+       echo $result['names'];
     }
     ?>
 </body>
