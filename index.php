@@ -20,12 +20,12 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     <?php
     
     // COUNT 
-    $query = "SELECT COUNT(*) as count FROM testie WHERE id>0";
-    $result = mysqli_query($link, $query) or die(mysqli_error($link));
-    $count = mysqli_fetch_assoc($result);
+    // $query = "SELECT COUNT(*) as count FROM testie WHERE id>0";
+    // $result = mysqli_query($link, $query) or die(mysqli_error($link));
+    // $count = mysqli_fetch_assoc($result);
     
-    var_dump($count);
-    
+    // var_dump($count);
+
     //PROCEDURE DATABASE;
 
     // $sql = "CREATE DATABASE testbase_2";
@@ -86,6 +86,14 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     //     var_dump($data);
     //     }
     // }
+
+    // LIKE
+    // if(isset($button2) == 1){
+        // $query = "SELECT * FROM testie WHERE names LIKE '%과'";
+    //     $result = mysqli_query($link, $query);
+    //    var_dump(mysqli_fetch_assoc($result));
+    // }
+
 
     ?>
 </body>
