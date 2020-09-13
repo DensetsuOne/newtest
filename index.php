@@ -18,6 +18,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     <input type="submit" name='button2'>
     </form>
     <?php
+
     //PROCEDURE DATABASE;
 
     // $sql = "CREATE DATABASE testbase_2";
@@ -33,7 +34,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     // mysqli_close($link);
     
     //PDO DATABASE;
- 
+
 
 
     // INSERT FOR DATABASE FROM test 
@@ -49,7 +50,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
         $query = "SELECT * FROM testie WHERE names='руссич'";
        $result = mysqli_query($link, $query);
        for($data = []; $row = mysqli_fetch_assoc($result); $data = $row);
-       echo $result['names'];
+       var_dump($data);
     }
     ?>
 </body>
