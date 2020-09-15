@@ -75,14 +75,13 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     //    var_dump($data);
     // }
 
-    //DELETED FOR DATABASE FROM TESTIE
+    // DELETED FOR DATABASE FROM TESTIE
     // if(isset($button2) == 1){
     //     $i = 40;
     //     $a = $i + 7;
     //     for($i; $i <= $a; $i++){
     // $query = "DELETE FROM testie WHERE id='$i'";
     // mysqli_query($link, $query);
-    // echo $i;
     //     }
     // }
 
@@ -109,7 +108,12 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     // }
 
         if(isset($massive) == 1){
-            $query = "SELECT * FROM testie WHERE id>0";
+            if(isset($_GET['del'])){
+                $del = $_GET['del'];
+                $query = "DELETE FROM testie WHERE id='$del'";
+                mysqli_query($link, $query);
+            }
+            $query = "SELECT * FROM testie WHERE id>0 ORDER BY age DESC ";
             $result = mysqli_query($link, $query);
             ?>
             <table border='1'>
@@ -118,12 +122,32 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
             <th>name</th>
             <th>age</th>
             <th>salary</th>
+            <form method='post'>
+            <th>deleted</th>
+            </form>
             </tr>
-           
             <?php
-            for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row){
-                echo "<tr><td>$row[id]</td><td>$row[names]</td><td>$row[age]</td><td>$row[salary]</td></tr>";
+            // ALTERNATIVE VIVOD DATABASE
+                // for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row){
+                //     $query_deleted = "DELETE FROM testie WHERE id='$row[id]'";
+                //     echo "<tr><td>$row[id]</td><td>$row[names]</td><td>$row[age]</td><td>$row[salary]</td><td>Удалить";
+                //     echo '</td></tr>';
+                // }
+
+             
+
+            for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+            $result = '';
+            foreach($data as $elem){
+                $result .= '<tr>';
+                $result .= '<td>' . $elem['id'] .'</td>';
+                $result .= '<td>' . $elem['names'] .'</td>';
+                $result .= '<td>' . $elem['age'] .'</td>';
+                $result .= '<td>' . $elem['salary'] .'</td>';
+                $result .= '<td><a href="?del='.$elem['id'].'">Удалить</a></td>';
+                $result .= '</tr>';
             }
+            echo $result;
         }
   
     ?>
