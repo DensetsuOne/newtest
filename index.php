@@ -14,6 +14,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
 </head>
 <body>
     <form method='post'>
+    <input type="text" name="arr_text" placeholder="Имя Возраст Зарплата" title="Введите имя, возраст, зарплата через пробел">
     <input type="submit" name='button'>
     <input type="submit" name='button2'>
     </form>
@@ -40,18 +41,29 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     // }
     // mysqli_close($link);
     
-    //PDO DATABASE;
+    //PDO DATABASE
 
+    //PDO EXIT;
 
-
-    // INSERT FOR DATABASE FROM test 
+    
     $button = $_POST['button'];
     $button2 = $_POST['button2'];
+    $text_arr = $_POST['arr_text'];
     mysqli_query($link, "SET NAMES'utf8'");
+
+
+    // INSERT FOR DATABASE FROM testie 
     if(isset($button) == 1){
-    $query = "INSERT INTO testie (names, age, salary) VALUES ('Михаил', 45, 2)";
-    mysqli_query($link,$query);
+        $text = explode(' ', $text_arr);
+        $query = "INSERT INTO testie SET names='$text[0]', age='$text[1]', salary='$text[2]'";
+        mysqli_query($link, $query);
     }
+
+    // INSERT FOR DATABASE FROM test ALTERNATIVE
+    // if(isset($button) == 1){
+    // $query = "INSERT INTO testie (names, age, salary) VALUES ('Михаил', 45, 2)";
+    // mysqli_query($link,$query);
+    // }
 
         //SELECT FOR DATABASE FROM TESTIE
     // if(isset($button2) == 1){
@@ -95,6 +107,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     // }
 
 
+  
     ?>
 </body>
 </html>
