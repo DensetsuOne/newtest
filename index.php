@@ -17,6 +17,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     <input type="text" name="arr_text" placeholder="Имя Возраст Зарплата" title="Введите имя, возраст, зарплата через пробел">
     <input type="submit" name='button'>
     <input type="submit" name='button2'>
+    <input type="submit" value='massive_arr_database' name='massive'>
     </form>
     <?php
     
@@ -48,6 +49,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     
     $button = $_POST['button'];
     $button2 = $_POST['button2'];
+    $massive = $_POST['massive'];
     $text_arr = $_POST['arr_text'];
     mysqli_query($link, "SET NAMES'utf8'");
 
@@ -106,8 +108,25 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
     //    var_dump(mysqli_fetch_assoc($result));
     // }
 
-
+        if(isset($massive) == 1){
+            $query = "SELECT * FROM testie WHERE id>0";
+            $result = mysqli_query($link, $query);
+            ?>
+            <table border='1'>
+            <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>salary</th>
+            </tr>
+           
+            <?php
+            for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row){
+                echo "<tr><td>$row[id]</td><td>$row[names]</td><td>$row[age]</td><td>$row[salary]</td></tr>";
+            }
+        }
   
     ?>
+     </table>
 </body>
 </html>
