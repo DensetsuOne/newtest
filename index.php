@@ -113,6 +113,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
                 $query = "DELETE FROM testie WHERE id='$del'";
                 mysqli_query($link, $query);
             }
+
             $query = "SELECT * FROM testie WHERE id>0 ORDER BY age DESC ";
             $result = mysqli_query($link, $query);
             ?>
@@ -130,7 +131,7 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
             // ALTERNATIVE VIVOD DATABASE
                 // for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row){
                 //     $query_deleted = "DELETE FROM testie WHERE id='$row[id]'";
-                //     echo "<tr><td>$row[id]</td><td>$row[names]</td><td>$row[age]</td><td>$row[salary]</td><td>Удалить";
+                //     echo "<tr><td>$row[id]</td><td>$row[names]</td><td>$row[age]</td><td>$row[salary]</td><td><a href="'?del='.$elem['id'].">Удалить</a></td>";
                 //     echo '</td></tr>';
                 // }
 
@@ -149,7 +150,15 @@ $link = mysqli_connect($connect->host, $connect->user, $connect->password, $conn
             }
             echo $result;
         }
-  
+        
+        if(isset($button2) == 1){
+            $query = "SELECT * FROM testie WHERE age>25 AND age=28";
+            $result = mysqli_query($link, $query);
+            for($data = []; $row = mysqli_fetch_assoc($result); $data = $row ){
+            var_dump($row);
+            }
+        }
+        
     ?>
      </table>
 </body>
